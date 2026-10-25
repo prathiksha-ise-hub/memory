@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Upload File | Digital Memory Vault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div>
+
+            <h1>📤 Upload File</h1>
+
+            <p>
+                Securely store your important files in your
+                Digital Memory Vault.
+            </p>
+
+        </div>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </header>
+
+
+    <!-- UPLOAD SECTION -->
+
+    <main class="upload-container">
+
+        <div class="upload-card">
+
+            <div class="upload-icon">
+                📁
+            </div>
+
+            <h2>
+                Upload Your File
+            </h2>
+
+            <p class="upload-description">
+                Choose a document, photo, certificate
+                or personal file to store securely.
+            </p>
+
+
+            <!-- FLASH MESSAGE -->
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    <div class="flash-message">
+
+                        {% for message in messages %}
+
+                            <p>{{ message }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <!-- UPLOAD FORM -->
+
+            <form
+                action="{{ url_for('upload') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <!-- FILE -->
+
+                <div class="form-group">
+
+                    <label for="file">
+                        📄 Select File
+                    </label>
+
+                    <input
+                        type="file"
+                        id="file"
+                        name="file"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        📂 File Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                    >
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Document">
+                            📄 Document
+                        </option>
+
+                        <option value="Photo">
+                            🖼️ Photo
+                        </option>
+
+                        <option value="Certificate">
+                            🎓 Certificate
+                        </option>
+
+                        <option value="Personal">
+                            👤 Personal
+                        </option>
+
+                        <option value="Other">
+                            📦 Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="primary-btn upload-btn"
+                >
+                    ⬆ Upload File
+                </button>
+
+            </form>
+
+
+            <!-- SECURITY -->
+
+            <div class="upload-security">
+
+                <div class="security-item">
+
+                    🔐
+
+                    <span>
+                        Your file is encrypted before storage.
+                    </span>
+
+                </div>
+
+                <div class="security-item">
+
+                    🛡️
+
+                    <span>
+                        Only your account can access the file.
+                    </span>
+
+                </div>
+
+                <div class="security-item">
+
+                    📦
+
+                    <span>
+                        Maximum file size: 50 MB.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>yth

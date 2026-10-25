@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Memories | Digital Memory Vault</title>
+
+    <!-- CORRECT CSS PATH -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- HEADER -->
+    <header class="page-header">
+
+        <div>
+
+            <h1>💭 My Memories</h1>
+
+            <p>
+                Moments worth keeping forever.
+            </p>
+
+        </div>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- MEMORY BANNER -->
+    <div class="memory-banner">
+
+        <div class="memory-banner-icon">
+            ✨
+        </div>
+
+        <div>
+
+            <h2>Your Memory Collection</h2>
+
+            <p>
+                Keep your special moments organized
+                and protected.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+
+        <!-- 2026 -->
+        <div class="timeline-item">
+
+            <div class="timeline-dot">
+                🎓
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="timeline-date">
+                    2026
+                </span>
+
+                <h2>Third Year Journey</h2>
+
+                <p>
+                    College memories, projects,
+                    achievements and special moments.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2025 -->
+        <div class="timeline-item">
+
+            <div class="timeline-dot">
+                💻
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="timeline-date">
+                    2025
+                </span>
+
+                <h2>My First Projects</h2>
+
+                <p>
+                    Projects, certificates and
+                    learning experiences.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2024 -->
+        <div class="timeline-item">
+
+            <div class="timeline-dot">
+                🌟
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="timeline-date">
+                    2024
+                </span>
+
+                <h2>College Beginning</h2>
+
+                <p>
+                    The beginning of a new academic journey.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MEMORY CAPSULE -->
+    <div class="memory-capsule">
+
+        <div class="capsule-icon">
+            ⏳
+        </div>
+
+        <div>
+
+            <h2>Future Memory Capsule</h2>
+
+            <p>
+                Save something today and open it
+                at a future date.
+            </p>
+
+        </div>
+
+        <button class="primary-btn"
+                type="button"
+                onclick="createCapsule()">
+            Create Capsule
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CORRECT JAVASCRIPT PATH -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

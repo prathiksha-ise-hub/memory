@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notes | Digital Memory Vault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <header class="page-header">
+
+        <div>
+            <h1>📝 My Notes</h1>
+            <p>Save your important thoughts and information.</p>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- ADD NOTE -->
+
+    <div class="note-form-card">
+
+        <h2>➕ Add New Note</h2>
+
+        <form method="POST"
+              action="{{ url_for('notes') }}">
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Note title"
+                required>
+
+            <textarea
+                name="content"
+                placeholder="Write your note here..."
+                rows="6"
+                required></textarea>
+
+            <button type="submit"
+                    class="primary-btn">
+                💾 Save Note
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- SAVED NOTES -->
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>📚 Saved Notes</h2>
+
+        </div>
+
+
+        <div class="notes-grid">
+
+            {% if notes %}
+
+                {% for note in notes %}
+
+                <div class="note-card">
+
+                    <h3>
+                        📝 {{ note["title"] }}
+                    </h3>
+
+                    <p>
+                        {{ note["content"] }}
+                    </p>
+
+                    <small>
+                        Created: {{ note["created_at"] }}
+                    </small>
+
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('delete_note', note_id=note['id']) }}">
+
+                        <button
+                            type="submit"
+                            class="delete-btn">
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div>📝</div>
+
+                    <h2>No notes yet</h2>
+
+                    <p>
+                        Create your first note above.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

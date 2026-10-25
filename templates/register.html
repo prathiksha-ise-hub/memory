@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Digital Memory Vault</title>
+
+    <!-- Correct CSS path -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+
+<body class="auth-body">
+
+    <div class="auth-container">
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <div class="auth-left">
+
+            <div class="logo">
+                🔐
+            </div>
+
+            <h1>
+                Create Your Vault
+            </h1>
+
+            <p>
+                Keep your important files and precious memories
+                safe in one private digital space.
+            </p>
+
+
+            <div class="security-badge">
+                🛡️ Your memories are protected
+            </div>
+
+
+            <div class="feature-list">
+
+                <span>
+                    🔐 Secure Access
+                </span>
+
+                <span>
+                    📁 Organized Storage
+                </span>
+
+                <span>
+                    🖼️ Memory Collection
+                </span>
+
+                <span>
+                    🔎 Smart Search
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT SIDE - REGISTER FORM
+        ================================================== -->
+
+        <div class="auth-card">
+
+            <h2>
+                Create Account 🚀
+            </h2>
+
+            <p class="subtitle">
+                Start your private memory vault
+            </p>
+
+
+            <!-- =================================================
+                 FLASH MESSAGES
+            ================================================== -->
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="alert">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <!-- =================================================
+                 REGISTER FORM
+            ================================================== -->
+
+            <form method="POST"
+                  action="{{ url_for('register') }}">
+
+                <!-- Username -->
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <!-- Password -->
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- Confirm Password -->
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    ✨ Create Vault
+
+                </button>
+
+            </form>
+
+
+            <!-- =================================================
+                 LOGIN LINK
+            ================================================== -->
+
+            <p class="switch-text">
+
+                Already have an account?
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Digital Memory Vault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            🔐
+            <span>Memory Vault</span>
+        </div>
+
+
+        <nav>
+
+            <!-- Dashboard -->
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item active">
+
+                🏠 Dashboard
+
+            </a>
+
+
+            <!-- My Vault -->
+
+            <a href="{{ url_for('vault') }}"
+               class="nav-item">
+
+                📁 My Vault
+
+            </a>
+
+
+            <!-- Memories -->
+
+            <a href="{{ url_for('memories') }}"
+               class="nav-item">
+
+                🖼️ Memories
+
+            </a>
+
+
+            <!-- Notes -->
+
+            <a href="{{ url_for('notes') }}"
+               class="nav-item">
+
+                📝 Notes
+
+            </a>
+
+
+            <!-- Profile -->
+
+            <a href="{{ url_for('profile') }}"
+               class="nav-item">
+
+                👤 Profile
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="security-small">
+
+                🛡️
+                <span>Vault Protected</span>
+
+            </div>
+
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-btn">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Hello, {{ username }} 👋
+                </h1>
+
+                <p>
+                    Welcome back to your digital memory space.
+                </p>
+
+            </div>
+
+
+            <div class="profile-circle">
+
+                {{ username[0]|upper }}
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <div class="search-box">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search your vault..."
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- Documents -->
+
+            <div class="stat-card purple">
+
+                <div class="stat-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ files|length }}
+                    </h3>
+
+                    <p>
+                        Documents
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Photos -->
+
+            <div class="stat-card pink">
+
+                <div class="stat-icon">
+                    🖼️
+                </div>
+
+                <div>
+
+                    <h3>
+                        0
+                    </h3>
+
+                    <p>
+                        Photos
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Notes -->
+
+            <div class="stat-card blue">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3>
+                        {{ note_count }}
+                    </h3>
+
+                    <p>
+                        Notes
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Protected -->
+
+            <div class="stat-card green">
+
+                <div class="stat-icon">
+                    🔐
+                </div>
+
+                <div>
+
+                    <h3>
+                        100%
+                    </h3>
+
+                    <p>
+                        Protected
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+
+                <!-- Upload -->
+
+                <a href="{{ url_for('upload') }}"
+                   class="quick-card">
+
+                    <span>
+                        📤
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Upload File
+                        </h3>
+
+                        <p>
+                            Securely store a document
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- Add Note -->
+
+                <a href="{{ url_for('notes') }}"
+                   class="quick-card">
+
+                    <span>
+                        📝
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Add Note
+                        </h3>
+
+                        <p>
+                            Save an important note
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- Create Memory -->
+
+                <a href="{{ url_for('memories') }}"
+                   class="quick-card">
+
+                    <span>
+                        💭
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Create Memory
+                        </h3>
+
+                        <p>
+                            Save a special moment
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT FILES
+        ================================================== -->
+
+        <section>
+
+
+            <div class="section-heading">
+
+                <h2>
+                    Recent Files
+                </h2>
+
+
+                <a href="{{ url_for('vault') }}">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+
+            <div class="file-grid">
+
+
+                {% if files %}
+
+
+                    {% for file in files %}
+
+
+                    <div class="file-card">
+
+
+                        <div class="file-icon">
+
+
+                            {% if file["category"] == "Documents" %}
+
+                                📄
+
+                            {% elif file["category"] == "Photos" %}
+
+                                🖼️
+
+                            {% elif file["category"] == "Notes" %}
+
+                                📝
+
+                            {% else %}
+
+                                📁
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <div class="file-info">
+
+                            <h3>
+
+                                {{ file["original_name"] }}
+
+                            </h3>
+
+
+                            <p>
+
+                                {{ file["category"] }}
+
+                            </p>
+
+                        </div>
+
+
+
+                        <a
+                            href="{{ url_for('download', file_id=file['id']) }}"
+                            class="download-btn">
+
+                            ⬇️
+
+                        </a>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <div class="empty-state">
+
+                        <div>
+                            📭
+                        </div>
+
+                        <h3>
+                            Your vault is empty
+                        </h3>
+
+                        <p>
+                            Start by uploading your first file.
+                        </p>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECURITY
+        ================================================== -->
+
+        <section class="security-banner">
+
+
+            <div class="security-icon">
+
+                🛡️
+
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Your Vault is Secure
+                </h2>
+
+                <p>
+
+                    Files uploaded to your vault are encrypted
+                    before being stored.
+
+                </p>
+
+            </div>
+
+
+            <span class="secure-status">
+
+                ● Protected
+
+            </span>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

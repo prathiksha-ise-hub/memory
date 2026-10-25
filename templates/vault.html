@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Vault | Digital Memory Vault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <header class="page-header">
+
+        <div>
+            <h1>📁 My Digital Vault</h1>
+            <p>Everything you store, protected in one place.</p>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <div class="vault-toolbar">
+
+        <div class="search-box">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="vaultSearch"
+                placeholder="Search files...">
+
+        </div>
+
+
+        <!-- FIXED -->
+
+        <a href="{{ url_for('upload') }}"
+           class="primary-btn">
+            + Upload
+        </a>
+
+    </div>
+
+
+    <div class="file-grid">
+
+        {% if files %}
+
+            {% for file in files %}
+
+            <div class="large-file-card">
+
+                <div class="large-file-icon">
+                    📄
+                </div>
+
+                <h3>
+                    {{ file["original_name"] }}
+                </h3>
+
+                <p>
+                    {{ file["category"] }}
+                </p>
+
+                <div class="file-actions">
+
+                    <a
+                        href="{{ url_for('download', file_id=file['id']) }}"
+                        class="download-full">
+                        ⬇ Download
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <div>🗃️</div>
+
+                <h2>No files yet</h2>
+
+                <p>
+                    Upload your first document to your vault.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

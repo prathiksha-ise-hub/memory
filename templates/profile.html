@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Digital Memory Vault</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div>
+
+            <h1>👤 My Profile</h1>
+
+            <p>
+                Manage your Digital Memory Vault account.
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- PROFILE LAYOUT -->
+
+    <div class="profile-layout">
+
+
+        <!-- PROFILE CARD -->
+
+        <div class="profile-card">
+
+
+            <div class="profile-avatar">
+
+                {{ username[0]|upper }}
+
+            </div>
+
+
+            <h2>
+
+                {{ username }}
+
+            </h2>
+
+
+            <p>
+
+                Digital Memory Vault User
+
+            </p>
+
+
+            <span class="verified-badge">
+
+                🛡️ Protected Account
+
+            </span>
+
+
+        </div>
+
+
+
+        <!-- ACCOUNT INFORMATION -->
+
+        <div class="settings-card">
+
+
+            <h2>
+
+                Account Information
+
+            </h2>
+
+
+            <div class="info-row">
+
+                <span>
+                    Username
+                </span>
+
+                <strong>
+                    {{ username }}
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Security
+                </span>
+
+                <strong class="green-text">
+
+                    🔐 Protected
+
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Storage
+                </span>
+
+                <strong>
+
+                    Personal Vault
+
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Encryption
+                </span>
+
+                <strong class="green-text">
+
+                    ✓ Enabled
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SECURITY BANNER -->
+
+    <div class="security-banner">
+
+
+        <div class="security-icon">
+
+            🛡️
+
+        </div>
+
+
+        <div>
+
+            <h2>
+
+                Security Status
+
+            </h2>
+
+
+            <p>
+
+                Your account uses password hashing
+                and encrypted file storage.
+
+            </p>
+
+        </div>
+
+
+        <span class="secure-status">
+
+            ● Secure
+
+        </span>
+
+
+    </div>
+
+
+
+    <!-- LOGOUT -->
+
+    <a href="{{ url_for('logout') }}"
+       class="logout-large">
+
+        🚪 Logout
+
+    </a>
+
+
+</div>
+
+</body>
+
+</html>
